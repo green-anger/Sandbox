@@ -1,1 +1,4 @@
 OpenGL/glad/* linguist-vendored
+OpenGL/stb_image.h linguist-vendored
+OpenGL/stb_impl.cpp linguist-vendored
+
