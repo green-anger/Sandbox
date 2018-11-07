@@ -3,6 +3,8 @@
 #include <boost/test/data/test_case.hpp>
 #include <boost/test/data/monomorphic.hpp>
 
+#include <ctime>
+
 
 namespace bdata = boost::unit_test::data;
 
@@ -72,4 +74,23 @@ BOOST_DATA_TEST_CASE( test02, bdata::xrange( 1, 4 ), var )
 BOOST_DATA_TEST_CASE( test03, bdata::xrange( 1, 4 ) ^ bdata::xrange( 7, 10 ), var1, var2 )
 {
     std::cout << var1 << ":" << var2 << std::endl;
+}
+
+
+BOOST_DATA_TEST_CASE( test04,
+    bdata::random(1, 17) ^ bdata::xrange( 7 ),
+    rand, ind )
+{
+    std::cout << "test04: " << rand << ":" << ind << std::endl;
+    BOOST_TEST( ( 1 <= rand && rand <= 17 ) );
+}
+
+
+BOOST_DATA_TEST_CASE( test05,
+    bdata::random( ( bdata::distribution=std::uniform_real_distribution<float>( 1, 2 ), bdata::seed=std::time( nullptr ) ) )
+    ^ bdata::xrange( 7 ),
+    rand, ind )
+{
+    std::cout << "test05: " << rand << ":" << ind << std::endl;
+    BOOST_TEST( rand < 1.7 );   // should produce ~30% of failures
 }
