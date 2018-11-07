@@ -6,3 +6,4 @@ find_package( Boost 1.21.0 REQUIRED )
 
 add_subdirectory( ex_0.0 )
 add_subdirectory( ex_0.1 )
+add_subdirectory( ex_0.2 )
