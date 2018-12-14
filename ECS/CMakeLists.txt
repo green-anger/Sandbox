@@ -1,9 +1,9 @@
-set( example ecs )
-
-add_executable( ${example} main.cpp MemPool.hpp Profiler.cpp Profiler.h )
+add_library( profiler Profiler.cpp Profiler.h )
+add_library( mem_pool INTERFACE )
+target_include_directories( mem_pool INTERFACE MemPool.hpp )
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-# target_link_libraries( ${example} )
+add_subdirectory( ex_01 )
